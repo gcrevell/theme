@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Palette Example — Dashboard</title>
+<style>
+  :root {
+    --surface-void: #05020A;
+    --surface-base: #0F0719;
+    --surface-canvas: #16142D;
+    --surface-raised: #24203E;
+    --surface-elevated: #322B4D;
+    --border-default: #373351;
+    --border-subtle: #4F4C66;
+    --border-muted: #605B7F;
+    --text-primary: #EEEDF9;
+    --text-secondary: #BAB8CC;
+    --text-muted: #8E87B0;
+    --accent-primary: #AE50FE;
+    --accent-primary-deep: #7209B7;
+    --accent-secondary: #FF580C;
+    --state-error: #FF525A;
+    --state-warning: #FCB100;
+    --state-info: #86B1FF;
+    --state-success: #00DD8B;
+    --syn-cyan: #00DDF4;
+    --syn-teal: #06BBA1;
+    --syn-mint: #76FFB7;
+    --syn-lavender: #C896FF;
+    --syn-amber: #FFCB36;
+    --syn-rose: #EC6B85;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  .app { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    background: var(--surface-void);
+    border-right: 1px solid var(--border-default);
+    padding: 20px 14px;
+  }
+  .sidebar .brand {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 700; font-size: 15px;
+    padding: 6px 10px 22px;
+  }
+  .sidebar .brand .dot {
+    width: 10px; height: 10px; border-radius: 3px;
+    background: var(--accent-primary);
+  }
+  .nav-group { margin-bottom: 18px; }
+  .nav-group .group-label {
+    color: var(--text-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0 10px 6px;
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13.5px;
+    margin-bottom: 2px;
+  }
+  .nav-item .glyph { width: 16px; text-align: center; color: var(--text-muted); }
+  .nav-item:hover { background: var(--surface-raised); color: var(--text-primary); }
+  .nav-item.active {
+    background: color-mix(in srgb, var(--accent-primary) 14%, transparent);
+    color: var(--text-primary);
+    border-left: 2px solid var(--accent-primary);
+    padding-left: 8px;
+  }
+  .nav-item.active .glyph { color: var(--accent-primary); }
+
+  /* ---------- Main ---------- */
+  .main { display: flex; flex-direction: column; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--border-default);
+    background: var(--surface-base);
+  }
+  .topbar h1 { font-size: 17px; margin: 0; }
+  .topbar-actions { display: flex; gap: 10px; align-items: center; }
+  .btn {
+    padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    border: 1px solid var(--border-default); background: transparent; color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .btn:hover { color: var(--text-primary); border-color: var(--border-muted); }
+  .btn-primary {
+    background: var(--accent-primary-deep); border-color: transparent; color: var(--text-primary);
+  }
+  .btn-primary:hover { background: var(--accent-primary); }
+
+  .content { padding: 24px 28px; }
+
+  /* ---------- Stat cards ---------- */
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat-card {
+    background: var(--surface-canvas);
+    border: 1px solid var(--border-default);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .stat-card .label { color: var(--text-muted); font-size: 12.5px; margin-bottom: 8px; }
+  .stat-card .value { font-size: 24px; font-weight: 700; }
+  .stat-card .delta { font-size: 12.5px; margin-top: 6px; font-weight: 600; }
+  .delta-up { color: var(--state-success); }
+  .delta-down { color: var(--state-error); }
+  .delta-flat { color: var(--text-muted); }
+
+  /* ---------- Panels ---------- */
+  .panel-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+  .panel {
+    background: var(--surface-canvas);
+    border: 1px solid var(--border-default);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .panel h2 { font-size: 14px; margin: 0 0 16px; color: var(--text-primary); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; color: var(--text-muted); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border-default); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  td { padding: 10px 10px; border-bottom: 1px solid var(--border-subtle); color: var(--text-secondary); }
+  tr:last-child td { border-bottom: none; }
+  td.primary { color: var(--text-primary); font-weight: 600; }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600;
+  }
+  .tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+  .tag-success { background: color-mix(in srgb, var(--state-success) 16%, transparent); color: var(--state-success); }
+  .tag-success::before { background: var(--state-success); }
+  .tag-warning { background: color-mix(in srgb, var(--state-warning) 16%, transparent); color: var(--state-warning); }
+  .tag-warning::before { background: var(--state-warning); }
+  .tag-error { background: color-mix(in srgb, var(--state-error) 16%, transparent); color: var(--state-error); }
+  .tag-error::before { background: var(--state-error); }
+
+  .chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .chip {
+    padding: 4px 10px; border-radius: 6px; font-size: 11.5px; font-weight: 600;
+  }
+  .chip-cyan { background: color-mix(in srgb, var(--syn-cyan) 18%, transparent); color: var(--syn-cyan); }
+  .chip-teal { background: color-mix(in srgb, var(--syn-teal) 18%, transparent); color: var(--syn-teal); }
+  .chip-lavender { background: color-mix(in srgb, var(--syn-lavender) 18%, transparent); color: var(--syn-lavender); }
+  .chip-amber { background: color-mix(in srgb, var(--syn-amber) 18%, transparent); color: var(--syn-amber); }
+  .chip-rose { background: color-mix(in srgb, var(--syn-rose) 18%, transparent); color: var(--syn-rose); }
+  .chip-orange { background: color-mix(in srgb, var(--accent-secondary) 18%, transparent); color: var(--accent-secondary); }
+
+  .activity-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border-subtle); }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-item .avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--surface-elevated); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--accent-primary);
+  }
+  .activity-item .text { color: var(--text-secondary); font-size: 12.5px; line-height: 1.4; }
+  .activity-item .text b { color: var(--text-primary); }
+  .activity-item .time { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand"><span class="dot"></span> Orbit Admin</div>
+    <div class="nav-group">
+      <div class="group-label">Overview</div>
+      <a class="nav-item active"><span class="glyph">◆</span> Dashboard</a>
+      <a class="nav-item"><span class="glyph">▤</span> Reports</a>
+      <a class="nav-item"><span class="glyph">◈</span> Alerts</a>
+    </div>
+    <div class="nav-group">
+      <div class="group-label">Manage</div>
+      <a class="nav-item"><span class="glyph">▣</span> Projects</a>
+      <a class="nav-item"><span class="glyph">◎</span> Members</a>
+      <a class="nav-item"><span class="glyph">⚙</span> Settings</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <h1>Dashboard</h1>
+      <div class="topbar-actions">
+        <button class="btn">Export</button>
+        <button class="btn btn-primary">+ New report</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="label">Active users</div>
+          <div class="value">18,204</div>
+          <div class="delta delta-up">▲ 4.2% vs last week</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Error rate</div>
+          <div class="value">0.31%</div>
+          <div class="delta delta-down">▲ 0.08pt vs last week</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Avg. response</div>
+          <div class="value">142ms</div>
+          <div class="delta delta-flat">— unchanged</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Revenue (MTD)</div>
+          <div class="value">$84.2k</div>
+          <div class="delta delta-up">▲ 11% vs last month</div>
+        </div>
+      </div>
+
+      <div class="panel-row">
+        <div class="panel">
+          <h2>Recent deployments</h2>
+          <table>
+            <thead>
+              <tr><th>Service</th><th>Version</th><th>Status</th><th>Tags</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="primary">api-gateway</td>
+                <td>v2.14.1</td>
+                <td><span class="tag tag-success">Healthy</span></td>
+                <td><div class="chip-row"><span class="chip chip-cyan">prod</span><span class="chip chip-teal">us-east</span></div></td>
+              </tr>
+              <tr>
+                <td class="primary">ingest-worker</td>
+                <td>v1.9.0</td>
+                <td><span class="tag tag-warning">Degraded</span></td>
+                <td><div class="chip-row"><span class="chip chip-orange">canary</span><span class="chip chip-lavender">batch</span></div></td>
+              </tr>
+              <tr>
+                <td class="primary">billing-service</td>
+                <td>v3.2.7</td>
+                <td><span class="tag tag-success">Healthy</span></td>
+                <td><div class="chip-row"><span class="chip chip-cyan">prod</span><span class="chip chip-amber">critical</span></div></td>
+              </tr>
+              <tr>
+                <td class="primary">notifications</td>
+                <td>v0.8.3</td>
+                <td><span class="tag tag-error">Failing</span></td>
+                <td><div class="chip-row"><span class="chip chip-rose">beta</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h2>Activity</h2>
+          <div class="activity-item">
+            <div class="avatar">JM</div>
+            <div>
+              <div class="text"><b>Jordan</b> deployed <b>api-gateway v2.14.1</b></div>
+              <div class="time">2 minutes ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="avatar">SK</div>
+            <div>
+              <div class="text"><b>Sam</b> acknowledged alert on <b>ingest-worker</b></div>
+              <div class="time">18 minutes ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="avatar">AL</div>
+            <div>
+              <div class="text"><b>Ana</b> rolled back <b>notifications</b> to v0.8.2</div>
+              <div class="time">1 hour ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

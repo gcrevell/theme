@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Palette Example — Landing Page</title>
+<style>
+  :root {
+    /* surface */
+    --surface-void: #05020A;
+    --surface-base: #0F0719;
+    --surface-canvas: #16142D;
+    --surface-raised: #24203E;
+    --surface-elevated: #322B4D;
+    /* border */
+    --border-default: #373351;
+    --border-subtle: #4F4C66;
+    --border-muted: #605B7F;
+    /* text */
+    --text-primary: #EEEDF9;
+    --text-secondary: #BAB8CC;
+    --text-muted: #8E87B0;
+    /* accent */
+    --accent-primary: #AE50FE;
+    --accent-primary-deep: #7209B7;
+    --accent-secondary: #FF580C;
+    /* state */
+    --state-error: #FF525A;
+    --state-warning: #FCB100;
+    --state-info: #86B1FF;
+    --state-success: #00DD8B;
+    /* syntax / decorative */
+    --syn-cyan: #00DDF4;
+    --syn-teal: #06BBA1;
+    --syn-mint: #76FFB7;
+    --syn-lavender: #C896FF;
+    --syn-amber: #FFCB36;
+    --syn-rose: #EC6B85;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  a { color: var(--accent-primary); }
+
+  /* ---------- Nav ---------- */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border-default);
+    background: var(--surface-base);
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+  .logo span { color: var(--accent-primary); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .nav-links a:hover { color: var(--text-primary); }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent-primary-deep);
+    color: var(--text-primary);
+  }
+  .btn-primary:hover { background: var(--accent-primary); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-default);
+  }
+  .btn-ghost:hover { color: var(--text-primary); border-color: var(--border-muted); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 120px 24px 90px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-default);
+    color: var(--syn-lavender);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 28px;
+  }
+  .badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-secondary);
+  }
+  .hero h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent-primary);
+  }
+  .hero p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    margin: 0 0 36px;
+  }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; }
+  .btn-large { padding: 14px 28px; font-size: 15px; border-radius: 10px; }
+
+  /* ---------- Feature grid ---------- */
+  .features {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 24px 120px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .card {
+    background: var(--surface-canvas);
+    border: 1px solid var(--border-default);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .card .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+  .icon-a { background: color-mix(in srgb, var(--accent-primary) 20%, transparent); color: var(--accent-primary); }
+  .icon-b { background: color-mix(in srgb, var(--syn-teal) 20%, transparent); color: var(--syn-teal); }
+  .icon-c { background: color-mix(in srgb, var(--syn-rose) 20%, transparent); color: var(--syn-rose); }
+  .card h3 { margin: 0 0 8px; font-size: 16px; }
+  .card p { margin: 0; color: var(--text-muted); font-size: 14px; }
+
+  /* ---------- Stats band ---------- */
+  .stats {
+    border-top: 1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
+    background: var(--surface-canvas);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .stat { padding: 36px 24px; text-align: center; border-right: 1px solid var(--border-default); }
+  .stat:last-child { border-right: none; }
+  .stat .num { font-size: 30px; font-weight: 700; color: var(--accent-primary); }
+  .stat .label { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+
+  /* ---------- Status strip demo ---------- */
+  .statuses {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    padding: 60px 24px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; }
+  .pill-success { background: color-mix(in srgb, var(--state-success) 15%, transparent); color: var(--state-success); }
+  .pill-success::before { background: var(--state-success); }
+  .pill-warning { background: color-mix(in srgb, var(--state-warning) 15%, transparent); color: var(--state-warning); }
+  .pill-warning::before { background: var(--state-warning); }
+  .pill-error { background: color-mix(in srgb, var(--state-error) 15%, transparent); color: var(--state-error); }
+  .pill-error::before { background: var(--state-error); }
+  .pill-info { background: color-mix(in srgb, var(--state-info) 15%, transparent); color: var(--state-info); }
+  .pill-info::before { background: var(--state-info); }
+
+  footer {
+    text-align: center;
+    padding: 40px 24px 60px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">orbit<span>.</span></div>
+    <div class="nav-links">
+      <a href="#">Product</a>
+      <a href="#">Pricing</a>
+      <a href="#">Docs</a>
+      <a href="#">Changelog</a>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="#" class="btn btn-ghost">Sign in</a>
+      <a href="#" class="btn btn-primary">Get started</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="badge">Now in public beta</div>
+    <h1>Ship dashboards your team <em>actually</em> reads.</h1>
+    <p>Orbit turns raw event data into live, shareable views — no BI backlog, no SQL required.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary btn-large">Start free trial</a>
+      <a href="#" class="btn btn-ghost btn-large">Watch demo →</a>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="num">4.2k</div><div class="label">Teams onboard</div></div>
+    <div class="stat"><div class="num">99.98%</div><div class="label">Uptime, trailing 90d</div></div>
+    <div class="stat"><div class="num">1.1B</div><div class="label">Events / month</div></div>
+    <div class="stat"><div class="num">&lt;80ms</div><div class="label">p50 query latency</div></div>
+  </div>
+
+  <section class="features">
+    <div class="card">
+      <div class="icon icon-a">◆</div>
+      <h3>Live by default</h3>
+      <p>Every chart streams — no manual refresh, no stale cache surprises.</p>
+    </div>
+    <div class="card">
+      <div class="icon icon-b">▣</div>
+      <h3>Composable views</h3>
+      <p>Drag any metric into any layout. Save it. Share the link.</p>
+    </div>
+    <div class="card">
+      <div class="icon icon-c">◈</div>
+      <h3>Team-aware alerts</h3>
+      <p>Route anomalies to the person who owns the metric, automatically.</p>
+    </div>
+  </section>
+
+  <section class="statuses">
+    <span class="pill pill-success">All systems operational</span>
+    <span class="pill pill-info">Scheduled maintenance Thu 2am</span>
+    <span class="pill pill-warning">Elevated latency — us-east</span>
+    <span class="pill pill-error">Ingest paused — retrying</span>
+  </section>
+
+  <footer>Palette demo — built from the Satellite Nebula theme extraction · primary accent #AE50FE</footer>
+
+</body>
+</html>

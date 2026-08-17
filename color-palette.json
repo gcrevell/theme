@@ -1,0 +1,71 @@
+{
+  "$meta": {
+    "source": "theme-satellite-2.19.0.vsix — \"Satellite Nebula\" variant",
+    "description": "Semantic color palette extracted from the VS Code theme's raw hex values, deduplicated and named by role rather than by UI widget. Intended as a portable base for applying the same look to other, unrelated designs.",
+    "character": "Dark violet ground with a warm coral/orange primary accent and a spread of saturated neon secondaries (cyan, teal, mint, lavender, amber, rose) used for variety/data-viz."
+  },
+
+  "surface": {
+    "void":     { "hex": "#05020A", "use": "deepest background — outer chrome, borders-of-borders, shadow tint" },
+    "base":     { "hex": "#0F0719", "use": "primary app/page background" },
+    "canvas":   { "hex": "#16142D", "use": "main content surface (e.g. editor/card body)" },
+    "raised":   { "hex": "#24203E", "use": "raised surface — hover states, secondary buttons, panels" },
+    "elevated": { "hex": "#322B4D", "use": "highest elevation — active/selected surface, tooltips, popovers" }
+  },
+
+  "border": {
+    "default": { "hex": "#373351", "use": "standard component border / divider" },
+    "subtle":  { "hex": "#4F4C66", "use": "low-contrast structural lines (indent guides, whitespace glyphs)" },
+    "muted":   { "hex": "#605B7F", "use": "separators, disabled borders, secondary dividers" }
+  },
+
+  "text": {
+    "primary":   { "hex": "#EEEDF9", "use": "main body/heading text" },
+    "secondary": { "hex": "#BAB8CC", "use": "secondary text, descriptions, captions" },
+    "muted":     { "hex": "#8E87B0", "use": "disabled/placeholder text, low-emphasis labels" },
+    "onAccent":  { "hex": "#EEEDF9", "use": "text/icons placed on top of accent-filled surfaces" }
+  },
+
+  "accent": {
+    "primary":     { "hex": "#AE50FE", "use": "primary brand accent — links, focus rings, active states, cursor" },
+    "primaryDeep": { "hex": "#7209B7", "use": "primary accent, deep/low-luminance variant — filled button backgrounds, badges" },
+    "secondary":   { "hex": "#FF580C", "use": "secondary warm accent (kept from the original orange theme) — numeric/constant emphasis, debug states" }
+  },
+
+  "state": {
+    "error":        { "hex": "#FF525A", "use": "error text/icons/borders" },
+    "errorAlt":     { "hex": "#FF6A6C", "use": "error fill variant (e.g. diff removals)" },
+    "warning":      { "hex": "#FCB100", "use": "warning text/icons/borders" },
+    "warningAlt":   { "hex": "#FABD00", "use": "warning fill variant (e.g. diff modified)" },
+    "info":         { "hex": "#86B1FF", "use": "informational text/icons/borders" },
+    "infoAlt":      { "hex": "#78A1FF", "use": "informational fill variant" },
+    "success":      { "hex": "#00DD8B", "use": "success text/icons/borders" },
+    "successAlt":   { "hex": "#00CE82", "use": "success fill variant (e.g. new/untracked)" }
+  },
+
+  "syntax": {
+    "cyan":     { "hex": "#00DDF4", "use": "functions/methods, links — bright, high-energy accent" },
+    "teal":     { "hex": "#06BBA1", "use": "types/classes/interfaces — cooler structural accent" },
+    "mint":     { "hex": "#76FFB7", "use": "strings, success-adjacent highlights" },
+    "lavender": { "hex": "#C896FF", "use": "variables/properties — soft purple accent" },
+    "amber":    { "hex": "#FFCB36", "use": "keywords, emphasis, star ratings" },
+    "rose":     { "hex": "#EC6B85", "use": "namespaces/tags — warm pink accent" },
+    "lime":     { "hex": "#C3FF90", "use": "regex/quotes — sharp yellow-green accent" },
+    "steel":    { "hex": "#91BFD1", "use": "punctuation/operators — quiet cool accent" },
+    "magenta":  { "hex": "#FF59E4", "use": "decorative rainbow accent (bracket pairing, charts)" },
+    "gold":     { "hex": "#FFC700", "use": "decorative rainbow accent (bracket pairing, charts)" },
+    "salmon":   { "hex": "#FF885D", "use": "decorative rainbow accent (bracket pairing, charts)" },
+    "jade":     { "hex": "#25FEA3", "use": "decorative rainbow accent (bracket pairing, charts)" },
+    "periwinkle": { "hex": "#9AAFFF", "use": "decorative rainbow accent (bracket pairing, charts)" }
+  },
+
+  "usageNotes": [
+    "Backgrounds get darker/flatter toward 'void'; content/interactive elements get lighter and more saturated toward 'elevated' and 'accent'.",
+    "accent.primary (#AE50FE) is the single most-reused color in the source theme — treat it as THE brand color: CTAs, focus states, active nav, links.",
+    "accent.primaryDeep (#7209B7) is a purple derived to match the new primary's hue at the same depth the original A32605 sat relative to the old orange — use it wherever a filled/pressed state of the primary accent is needed.",
+    "accent.secondary (#FF580C) is the one color deliberately left orange — a nod to the theme's original accent, now reading as a distinct warm counterpoint to the purple primary rather than a competing brand color.",
+    "The syntax set reads as a cohesive 'neon on violet' rainbow — good for tags, category chips, chart series, or status dots where you need many distinct-but-harmonious hues.",
+    "state.* colors are WCAG AA-verified against surface.base/canvas in the source theme — safe to reuse directly for error/warning/info/success UI on a dark violet ground.",
+    "For a light-mode counterpart, this theme package also ships 'Satellite Daybreak' (satellite-daybreak.json) — ask if you want that palette extracted too."
+  ]
+}
