@@ -2,7 +2,7 @@
   "$meta": {
     "source": "theme-satellite-2.19.0.vsix — \"Satellite Nebula\" variant",
     "description": "Semantic color palette extracted from the VS Code theme's raw hex values, deduplicated and named by role rather than by UI widget. Intended as a portable base for applying the same look to other, unrelated designs.",
-    "character": "Dark violet ground with a warm coral/orange primary accent and a spread of saturated neon secondaries (cyan, teal, mint, lavender, amber, rose) used for variety/data-viz."
+    "character": "Dark violet ground with a purple primary accent, a warm orange secondary accent kept from the original theme, and a spread of saturated neon hues (cyan, teal, mint, lavender, amber, rose) used for variety/data-viz."
   },
 
   "surface": {
@@ -66,6 +66,6 @@
     "accent.secondary (#FF580C) is the one color deliberately left orange — a nod to the theme's original accent, now reading as a distinct warm counterpoint to the purple primary rather than a competing brand color.",
     "The syntax set reads as a cohesive 'neon on violet' rainbow — good for tags, category chips, chart series, or status dots where you need many distinct-but-harmonious hues.",
     "state.* colors are WCAG AA-verified against surface.base/canvas in the source theme — safe to reuse directly for error/warning/info/success UI on a dark violet ground.",
-    "For a light-mode counterpart, this theme package also ships 'Satellite Daybreak' (satellite-daybreak.json) — ask if you want that palette extracted too."
+    "The source theme package also ships a light counterpart, 'Satellite Daybreak' (satellite-daybreak.json), which hasn't been extracted here."
   ]
 }
