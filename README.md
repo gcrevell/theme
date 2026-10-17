@@ -7,7 +7,11 @@ editor widget, so the same look carries over to web pages, dashboards and apps.
 
 ![The example dashboard: a sidebar, stat cards, a table of deployments with status tags, and an activity feed](docs/example-dashboard.png)
 
+*[`example-dashboard.html`](example-dashboard.html)*
+
 ![The example landing page: navigation, a hero with primary and secondary buttons, a stats band, feature cards and status pills](docs/example-landing.png)
+
+*[`example-landing.html`](example-landing.html)*
 
 ## What's here
 
