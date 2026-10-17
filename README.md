@@ -65,8 +65,8 @@ The example pages follow these rules. Keep them in anything built on the palette
 
 The colours are copied, not imported. A colour change goes into `color-palette.json`,
 the `:root` block of each example page, and `obsidian/theme.css`
-([its README](obsidian/README.md#structure-of-themecss) says where). The projects
-under [Used by](#used-by) keep their own copies too.
+([its README](obsidian/README.md#structure-of-themecss) says where). Projects built on
+the palette keep their own copies too.
 
 Open the example pages in a browser and look them over. On macOS:
 
@@ -91,9 +91,6 @@ To check the Obsidian theme, install it in a vault as
 
 - [dotfiles](https://github.com/gcrevell/dotfiles): its Claude Code theme and status
   line, and the zsh prompt.
-- Private repos: deadfront (a deploy control panel), dashy-config (a Dashy theme),
-  grafana-cards and grafana-config (Grafana panels and dashboards), home-ansible (a
-  theme for the Homepage dashboard) and incogneato (an iOS app).
 
 ## License
 
