@@ -1,0 +1,528 @@
+/* ==========================================================================
+   Satellite Nebula — an Obsidian theme
+   --------------------------------------------------------------------------
+   Dark violet ground, violet primary accent, warm coral counterpoint, and a
+   spread of saturated neon secondaries used for headings, tags and syntax.
+
+   Palette source: color-palette.json ("Satellite Nebula" variant, extracted
+   from theme-satellite-2.19.0.vsix). Colors are named by role, not by widget.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Raw palette
+   -------------------------------------------------------------------------- */
+
+.theme-dark,
+.theme-light {
+  /* Surfaces */
+  --sn-void: #05020a;
+  --sn-base: #0f0719;
+  --sn-canvas: #16142d;
+  --sn-raised: #24203e;
+  --sn-elevated: #322b4d;
+
+  /* Borders */
+  --sn-border: #373351;
+  --sn-border-subtle: #4f4c66;
+  --sn-border-muted: #605b7f;
+
+  /* Text */
+  --sn-text: #eeedf9;
+  --sn-text-secondary: #bab8cc;
+  --sn-text-muted: #8e87b0;
+
+  /* Accents */
+  --sn-accent: #ae50fe;
+  --sn-accent-deep: #7209b7;
+  --sn-accent-warm: #ff580c;
+
+  /* State */
+  --sn-error: #ff525a;
+  --sn-error-alt: #ff6a6c;
+  --sn-warning: #fcb100;
+  --sn-warning-alt: #fabd00;
+  --sn-info: #86b1ff;
+  --sn-info-alt: #78a1ff;
+  --sn-success: #00dd8b;
+  --sn-success-alt: #00ce82;
+
+  /* Syntax / data-viz spread */
+  --sn-cyan: #00ddf4;
+  --sn-teal: #06bba1;
+  --sn-mint: #76ffb7;
+  --sn-lavender: #c896ff;
+  --sn-amber: #ffcb36;
+  --sn-rose: #ec6b85;
+  --sn-lime: #c3ff90;
+  --sn-steel: #91bfd1;
+  --sn-magenta: #ff59e4;
+  --sn-gold: #ffc700;
+  --sn-salmon: #ff885d;
+  --sn-jade: #25fea3;
+  --sn-periwinkle: #9aafff;
+}
+
+/* --------------------------------------------------------------------------
+   2. Accent + named color hooks (drives Obsidian's own derived colors)
+   -------------------------------------------------------------------------- */
+
+body {
+  /* accent.primary #AE50FE expressed as HSL so Obsidian can derive hovers */
+  --accent-h: 272;
+  --accent-s: 99%;
+  --accent-l: 65%;
+
+  --color-red: var(--sn-error);
+  --color-red-rgb: 255, 82, 90;
+  --color-orange: var(--sn-accent-warm);
+  --color-orange-rgb: 255, 88, 12;
+  --color-yellow: var(--sn-amber);
+  --color-yellow-rgb: 255, 203, 54;
+  --color-green: var(--sn-success);
+  --color-green-rgb: 0, 221, 139;
+  --color-cyan: var(--sn-cyan);
+  --color-cyan-rgb: 0, 221, 244;
+  --color-blue: var(--sn-info);
+  --color-blue-rgb: 134, 177, 255;
+  --color-purple: var(--sn-accent);
+  --color-purple-rgb: 174, 80, 254;
+  --color-pink: var(--sn-magenta);
+  --color-pink-rgb: 255, 89, 228;
+}
+
+/* --------------------------------------------------------------------------
+   3. Dark mode — the intended look
+   -------------------------------------------------------------------------- */
+
+.theme-dark {
+  /* Base scale: 00 is the darkest chrome, 100 the brightest text */
+  --color-base-00: var(--sn-base);
+  --color-base-05: var(--sn-canvas);
+  --color-base-10: #1c1936;
+  --color-base-20: var(--sn-raised);
+  --color-base-25: #2b2645;
+  --color-base-30: var(--sn-elevated);
+  --color-base-35: var(--sn-border);
+  --color-base-40: var(--sn-border-subtle);
+  --color-base-50: var(--sn-border-muted);
+  --color-base-60: var(--sn-text-muted);
+  --color-base-70: var(--sn-text-secondary);
+  --color-base-100: var(--sn-text);
+
+  --background-primary: var(--sn-canvas);
+  --background-primary-alt: var(--sn-base);
+  --background-secondary: var(--sn-base);
+  --background-secondary-alt: var(--sn-void);
+  --titlebar-background: var(--sn-void);
+  --titlebar-background-focused: var(--sn-base);
+  --sidebar-border-color: var(--sn-border);
+
+  --background-modifier-border: var(--sn-border);
+  --background-modifier-border-hover: var(--sn-border-subtle);
+  --background-modifier-border-focus: var(--sn-accent);
+  --background-modifier-hover: rgba(174, 80, 254, 0.1);
+  --background-modifier-active-hover: rgba(174, 80, 254, 0.18);
+  --background-modifier-form-field: var(--sn-base);
+  --background-modifier-box-shadow: rgba(5, 2, 10, 0.6);
+  --background-modifier-success: var(--sn-success-alt);
+  --background-modifier-error: var(--sn-error);
+  --background-modifier-error-hover: var(--sn-error-alt);
+  --background-modifier-error-rgb: 255, 82, 90;
+  --background-modifier-message: var(--sn-elevated);
+
+  --text-normal: var(--sn-text);
+  --text-muted: var(--sn-text-secondary);
+  --text-faint: var(--sn-text-muted);
+  --text-on-accent: var(--sn-text);
+  --text-on-accent-inverted: var(--sn-void);
+  --text-error: var(--sn-error);
+  --text-warning: var(--sn-warning);
+  --text-success: var(--sn-success);
+  --text-accent: var(--sn-accent);
+  --text-accent-hover: var(--sn-lavender);
+  --text-selection: rgba(174, 80, 254, 0.28);
+  --text-highlight-bg: rgba(255, 203, 54, 0.3);
+  --text-highlight-bg-active: rgba(255, 88, 12, 0.4);
+
+  --interactive-normal: var(--sn-raised);
+  --interactive-hover: var(--sn-elevated);
+  --interactive-accent: var(--sn-accent);
+  --interactive-accent-hover: var(--sn-lavender);
+  --interactive-accent-hsl: var(--accent-h), var(--accent-s), var(--accent-l);
+
+  --shadow-s: 0 1px 2px rgba(5, 2, 10, 0.5);
+  --shadow-l: 0 8px 28px rgba(5, 2, 10, 0.7);
+
+  --divider-color: var(--sn-border);
+  --divider-color-hover: var(--sn-accent);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--sn-elevated);
+  --scrollbar-active-thumb-bg: var(--sn-accent-deep);
+
+  --icon-color: var(--sn-text-secondary);
+  --icon-color-hover: var(--sn-text);
+  --icon-color-active: var(--sn-accent);
+  --icon-color-focused: var(--sn-text);
+
+  --nav-item-color: var(--sn-text-secondary);
+  --nav-item-color-hover: var(--sn-text);
+  --nav-item-color-active: var(--sn-text);
+  --nav-item-background-hover: rgba(174, 80, 254, 0.1);
+  --nav-item-background-active: rgba(174, 80, 254, 0.18);
+
+  --tab-text-color-focused-active: var(--sn-text);
+  --tab-text-color-focused-active-current: var(--sn-accent);
+  --tab-outline-color: var(--sn-border);
+
+  --status-bar-background: var(--sn-void);
+  --status-bar-text-color: var(--sn-text-muted);
+  --ribbon-background: var(--sn-void);
+  --ribbon-background-collapsed: var(--sn-base);
+
+  --modal-background: var(--sn-canvas);
+  --modal-border-color: var(--sn-border);
+  --prompt-border-color: var(--sn-border);
+
+  --blockquote-border-color: var(--sn-accent-deep);
+  --hr-color: var(--sn-border);
+  --indentation-guide-color: var(--sn-border);
+  --indentation-guide-color-active: var(--sn-border-muted);
+
+  --table-header-background: var(--sn-base);
+  --table-header-background-hover: var(--sn-raised);
+  --table-row-alt-background: rgba(255, 255, 255, 0.015);
+  --table-row-background-hover: rgba(174, 80, 254, 0.07);
+  --table-border-color: var(--sn-border);
+
+  --checkbox-color: var(--sn-accent);
+  --checkbox-color-hover: var(--sn-lavender);
+  --checkbox-border-color: var(--sn-border-muted);
+  --checkbox-border-color-hover: var(--sn-accent);
+  --checkbox-marker-color: var(--sn-text);
+
+  --code-background: var(--sn-base);
+  --code-normal: var(--sn-text-secondary);
+  --code-comment: var(--sn-text-muted);
+  --code-function: var(--sn-cyan);
+  --code-important: var(--sn-accent-warm);
+  --code-keyword: var(--sn-amber);
+  --code-operator: var(--sn-steel);
+  --code-property: var(--sn-lavender);
+  --code-punctuation: var(--sn-steel);
+  --code-string: var(--sn-mint);
+  --code-tag: var(--sn-rose);
+  --code-value: var(--sn-accent-warm);
+
+  --inline-title-color: var(--sn-text);
+  --link-external-color: var(--sn-cyan);
+  --link-external-color-hover: var(--sn-mint);
+  --link-unresolved-color: var(--sn-error);
+  --link-unresolved-opacity: 0.7;
+
+  --graph-line: var(--sn-border);
+  --graph-node: var(--sn-text-secondary);
+  --graph-node-unresolved: var(--sn-error);
+  --graph-node-focused: var(--sn-accent);
+  --graph-node-tag: var(--sn-teal);
+  --graph-node-attachment: var(--sn-amber);
+
+  --canvas-background: var(--sn-base);
+  --canvas-color: 79, 76, 102;
+  --canvas-dot-pattern: var(--sn-border);
+  --canvas-card-label-color: var(--sn-text-muted);
+
+  --embed-border-left: 2px solid var(--sn-accent-deep);
+  --collapse-icon-color: var(--sn-text-muted);
+  --collapse-icon-color-collapsed: var(--sn-accent);
+
+  --slider-track-background: var(--sn-raised);
+  --slider-thumb-border-color: var(--sn-border-muted);
+  --toggle-thumb-color: var(--sn-text);
+
+  --tag-color: var(--sn-lavender);
+  --tag-background: rgba(174, 80, 254, 0.14);
+  --tag-background-hover: rgba(174, 80, 254, 0.26);
+  --tag-border-color: rgba(174, 80, 254, 0.32);
+  --tag-border-color-hover: var(--sn-accent);
+
+  --h1-color: var(--sn-accent);
+  --h2-color: var(--sn-cyan);
+  --h3-color: var(--sn-teal);
+  --h4-color: var(--sn-mint);
+  --h5-color: var(--sn-amber);
+  --h6-color: var(--sn-rose);
+
+  --bold-color: var(--sn-amber);
+  --italic-color: var(--sn-lavender);
+
+  --pdf-background: var(--sn-base);
+  --pdf-sidebar-background: var(--sn-void);
+  --pdf-thumbnail-shadow: none;
+}
+
+/* Light mode: the source palette is dark-only, so keep Obsidian's own light
+   base scale and only carry over the brand accent + named hues. */
+.theme-light {
+  --text-accent: var(--sn-accent-deep);
+  --text-accent-hover: var(--sn-accent);
+  --interactive-accent: var(--sn-accent);
+  --interactive-accent-hover: var(--sn-accent-deep);
+  --blockquote-border-color: var(--sn-accent);
+  --h1-color: var(--sn-accent-deep);
+  --h2-color: #067f6e;
+  --h3-color: #0a6e7d;
+  --h4-color: #1a7f55;
+  --h5-color: #9a6a00;
+  --h6-color: #c2415c;
+  --link-external-color: #0a7f8d;
+}
+
+/* --------------------------------------------------------------------------
+   4. Callouts — mapped onto the state + syntax hues
+   -------------------------------------------------------------------------- */
+
+.theme-dark {
+  --callout-default: 174, 80, 254;      /* accent.primary  */
+  --callout-info: 134, 177, 255;        /* state.info      */
+  --callout-summary: 0, 221, 244;       /* syntax.cyan     */
+  --callout-tip: 6, 187, 161;           /* syntax.teal     */
+  --callout-todo: 154, 175, 255;        /* periwinkle      */
+  --callout-success: 0, 221, 139;       /* state.success   */
+  --callout-question: 255, 203, 54;     /* syntax.amber    */
+  --callout-warning: 252, 177, 0;       /* state.warning   */
+  --callout-failure: 255, 82, 90;       /* state.error     */
+  --callout-danger: 255, 88, 12;        /* accent.secondary*/
+  --callout-bug: 236, 107, 133;         /* syntax.rose     */
+  --callout-example: 200, 150, 255;     /* syntax.lavender */
+  --callout-quote: 145, 191, 209;       /* syntax.steel    */
+}
+
+/* --------------------------------------------------------------------------
+   5. Editor & reading view
+   -------------------------------------------------------------------------- */
+
+.theme-dark .cm-s-obsidian .cm-active.cm-line,
+.theme-dark .markdown-source-view.mod-cm6 .cm-active.cm-line {
+  background-color: rgba(174, 80, 254, 0.05);
+}
+
+.theme-dark .cm-s-obsidian .cm-line .cm-hmd-frontmatter,
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter {
+  color: var(--sn-text-muted);
+}
+
+/* Cursor uses the brand accent */
+.theme-dark .cm-s-obsidian .cm-cursor,
+.theme-dark .markdown-source-view .cm-cursorLayer .cm-cursor-primary {
+  border-left-color: var(--sn-accent);
+}
+
+/* Search / find matches */
+.theme-dark .cm-s-obsidian span.cm-search-match,
+.theme-dark .document-search-container .cm-searchMatch {
+  background-color: rgba(255, 203, 54, 0.25);
+}
+.theme-dark .cm-s-obsidian span.cm-search-match-selected,
+.theme-dark .document-search-container .cm-searchMatch-selected {
+  background-color: rgba(255, 88, 12, 0.4);
+}
+
+/* Internal vs external links */
+.theme-dark .cm-s-obsidian .cm-hmd-internal-link,
+.theme-dark .markdown-rendered a.internal-link {
+  color: var(--sn-accent);
+  text-decoration-color: rgba(174, 80, 254, 0.4);
+}
+.theme-dark .markdown-rendered a.internal-link:hover {
+  color: var(--sn-lavender);
+}
+.theme-dark .cm-s-obsidian .cm-url,
+.theme-dark .cm-s-obsidian .cm-link {
+  color: var(--sn-cyan);
+}
+
+/* Highlights, bold, italic */
+.theme-dark .markdown-rendered mark,
+.theme-dark .cm-s-obsidian .cm-highlight {
+  background-color: var(--text-highlight-bg);
+  color: var(--sn-text);
+}
+
+/* Blockquotes get a faint tinted body, not just a rule */
+.theme-dark .markdown-rendered blockquote {
+  background-color: rgba(114, 9, 183, 0.1);
+  border-radius: 0 4px 4px 0;
+  padding: 2px 16px;
+}
+
+/* Inline code */
+.theme-dark .markdown-rendered code:not([class*="language-"]),
+.theme-dark .cm-s-obsidian .cm-inline-code {
+  color: var(--sn-lavender);
+  background-color: rgba(114, 9, 183, 0.16);
+}
+
+/* Horizontal rule */
+.theme-dark .markdown-rendered hr {
+  border-top: 1px solid var(--sn-border);
+}
+
+/* Task list: completed items fade out */
+.theme-dark .markdown-rendered li.task-list-item[data-task="x"],
+.theme-dark .markdown-rendered li.task-list-item[data-task="X"] {
+  color: var(--sn-text-muted);
+  text-decoration-color: var(--sn-border-muted);
+}
+
+/* --------------------------------------------------------------------------
+   6. Code blocks — Prism tokens beyond Obsidian's built-in --code-* hooks
+   -------------------------------------------------------------------------- */
+
+.theme-dark .token.number,
+.theme-dark .token.boolean,
+.theme-dark .token.constant,
+.theme-dark .cm-s-obsidian .cm-number {
+  color: var(--sn-accent-warm);
+}
+
+.theme-dark .token.class-name,
+.theme-dark .token.builtin,
+.theme-dark .cm-s-obsidian .cm-type {
+  color: var(--sn-teal);
+}
+
+.theme-dark .token.regex,
+.theme-dark .token.char {
+  color: var(--sn-lime);
+}
+
+.theme-dark .token.selector,
+.theme-dark .token.attr-name {
+  color: var(--sn-rose);
+}
+
+.theme-dark .token.variable,
+.theme-dark .token.symbol {
+  color: var(--sn-lavender);
+}
+
+.theme-dark .token.deleted {
+  color: var(--sn-error-alt);
+}
+
+.theme-dark .token.inserted {
+  color: var(--sn-success-alt);
+}
+
+.theme-dark .token.changed {
+  color: var(--sn-warning-alt);
+}
+
+.theme-dark pre[class*="language-"],
+.theme-dark .markdown-rendered pre {
+  border: 1px solid var(--sn-border);
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Chrome: sidebar, tabs, status bar
+   -------------------------------------------------------------------------- */
+
+/* Active tab and active file get an accent edge */
+.theme-dark .workspace-tab-header.is-active {
+  box-shadow: inset 0 -2px 0 0 var(--sn-accent);
+}
+
+.theme-dark .nav-file-title.is-active,
+.theme-dark .nav-folder-title.is-active {
+  box-shadow: inset 2px 0 0 0 var(--sn-accent);
+}
+
+.theme-dark .workspace-ribbon {
+  border-color: var(--sn-border);
+}
+
+.theme-dark .status-bar {
+  border-top: 1px solid var(--sn-border);
+}
+
+/* Vault switcher / headings in the file explorer */
+.theme-dark .nav-folder-title-content {
+  color: var(--sn-text-secondary);
+}
+
+/* Search result file names */
+.theme-dark .search-result-file-title {
+  color: var(--sn-cyan);
+}
+.theme-dark .search-result-file-matched-text {
+  background-color: rgba(255, 203, 54, 0.25);
+  color: var(--sn-text);
+}
+
+/* Tag pane counts */
+.theme-dark .tree-item-flair {
+  color: var(--sn-text-muted);
+  background-color: var(--sn-raised);
+}
+
+/* --------------------------------------------------------------------------
+   8. Tags — pill-shaped, tinted with the brand accent
+   -------------------------------------------------------------------------- */
+
+.theme-dark .markdown-rendered a.tag,
+.theme-dark .cm-s-obsidian .cm-hashtag {
+  border: 1px solid var(--tag-border-color);
+  border-radius: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Graph & canvas
+   -------------------------------------------------------------------------- */
+
+.theme-dark .graph-view.color-fill-focused {
+  color: var(--sn-accent);
+}
+.theme-dark .graph-view.color-arrow {
+  color: var(--sn-border-muted);
+}
+.theme-dark .graph-view.color-circle {
+  color: var(--sn-accent-deep);
+}
+
+.theme-dark .canvas-node-container {
+  border-color: var(--sn-border);
+}
+.theme-dark .canvas-node.is-focused .canvas-node-container {
+  box-shadow: 0 0 0 2px var(--sn-accent);
+}
+
+/* --------------------------------------------------------------------------
+   10. Misc polish
+   -------------------------------------------------------------------------- */
+
+.theme-dark ::selection {
+  background-color: var(--text-selection);
+}
+
+.theme-dark .suggestion-item.is-selected,
+.theme-dark .menu-item:hover:not(.is-disabled):not(.is-label) {
+  background-color: rgba(174, 80, 254, 0.18);
+}
+
+.theme-dark button.mod-cta {
+  color: var(--sn-text);
+  background-color: var(--sn-accent-deep);
+}
+.theme-dark button.mod-cta:hover {
+  background-color: var(--sn-accent);
+}
+
+.theme-dark button.mod-warning {
+  background-color: var(--sn-error);
+  color: var(--sn-void);
+}
+
+.theme-dark .mod-root .workspace-tab-header-container {
+  border-bottom: 1px solid var(--sn-border);
+}
